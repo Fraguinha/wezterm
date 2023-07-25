@@ -67,8 +67,8 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- Feedzai
 table.insert(config.hyperlink_rules, {
-  regex = '\\b([A-Z]+-[0-9]+)\\b',
-  format = 'https://fdz.atlassian.net/browse/$1',
+    regex = '\\b([A-Z]+-[0-9]+)\\b',
+    format = 'https://fdz.atlassian.net/browse/$1',
 })
 
 -- Keybindings
@@ -165,6 +165,8 @@ config.keys = {
         key = 'x',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.Multiple {
+            wezterm.action.CopyMode 'ClearPattern',
+            wezterm.action.CopyMode 'ClearSelectionMode',
             wezterm.action.ActivateCopyMode
         }
     },
