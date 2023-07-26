@@ -86,12 +86,12 @@ config.keys = {
         action = wezterm.action.PasteFrom "Clipboard",
     },
     {
-        key = 'r',
+        key = '%',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
-        key = 'd',
+        key = '"',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
