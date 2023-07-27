@@ -47,7 +47,11 @@ config.color_scheme = 'Catppuccin Mocha'
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
-config.font_size = 10
+if wezterm.target_triple == 'aarch64-apple-darwin' or 'x86_64-apple-darwin' then
+    config.font_size = 12
+else
+    config.font_size = 10
+end
 
 -- Window
 config.native_macos_fullscreen_mode = true
