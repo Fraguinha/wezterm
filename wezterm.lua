@@ -47,7 +47,7 @@ config.color_scheme = 'Catppuccin Mocha'
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
-config.font_size = 14
+config.font_size = 10
 
 -- Window
 config.native_macos_fullscreen_mode = true
@@ -75,92 +75,22 @@ table.insert(config.hyperlink_rules, {
 config.disable_default_key_bindings = true
 config.leader = { key = 'Space', mods = 'CTRL|SHIFT' }
 config.keys = {
-    {
-        key = 'c',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.CopyTo "Clipboard",
-    },
-    {
-        key = 'v',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.PasteFrom "Clipboard",
-    },
-    {
-        key = '%',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-    },
-    {
-        key = '"',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-    },
-    {
-        key = 'h',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.EmitEvent('ActivatePaneDirection-left'),
-    },
-    {
-        key = 'j',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.EmitEvent('ActivatePaneDirection-down'),
-    },
-    {
-        key = 'k',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.EmitEvent('ActivatePaneDirection-up'),
-    },
-    {
-        key = 'l',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.EmitEvent('ActivatePaneDirection-right'),
-    },
-    {
-        key = 'u',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.ScrollByPage(-0.5)
-    },
-    {
-        key = 'd',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.ScrollByPage(0.5)
-    },
-    {
-        key = ')',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.ResetFontSize
-    },
-    {
-        key = '_',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.DecreaseFontSize
-    },
-    {
-        key = '+',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.IncreaseFontSize
-    },
-    {
-        key = 'f',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.Search {
-            CaseInSensitiveString = ""
-        },
-    },
-    {
-        key = 'g',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.Search {
-            Regex = '[a-f0-9]{6,}',
-        },
-    },
-    {
-        key = 't',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.Search {
-            Regex = '[0-9]+\\.[0-9]+\\.[0-9]+',
-        },
-    },
+    { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo "Clipboard", },
+    { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom "Clipboard", },
+    { key = '%', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+    { key = '"', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
+    { key = 'h', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-left'), },
+    { key = 'j', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-down'), },
+    { key = 'k', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-up'), },
+    { key = 'l', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-right'), },
+    { key = 'u', mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(-0.5) },
+    { key = 'd', mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(0.5) },
+    { key = ')', mods = 'CTRL|SHIFT', action = wezterm.action.ResetFontSize },
+    { key = '_', mods = 'CTRL|SHIFT', action = wezterm.action.DecreaseFontSize },
+    { key = '+', mods = 'CTRL|SHIFT', action = wezterm.action.IncreaseFontSize },
+    { key = 'f', mods = 'CTRL|SHIFT', action = wezterm.action.Search { CaseInSensitiveString = "" }, },
+    { key = 'g', mods = 'CTRL|SHIFT', action = wezterm.action.Search { Regex = '[a-f0-9]{6,}', }, },
+    { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.Search { Regex = '[0-9]+\\.[0-9]+\\.[0-9]+', }, },
     {
         key = 'x',
         mods = 'CTRL|SHIFT',
@@ -181,34 +111,10 @@ config.keys = {
 }
 config.key_tables = {
     search_mode = {
-        {
-            key = 'n',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode 'NextMatch'
-        },
-        {
-            key = 'p',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode 'PriorMatch'
-        },
-        {
-            key = 'r',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode 'CycleMatchType'
-        },
-        {
-            key = 'l',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode 'ClearPattern'
-        },
-        {
-            key = 'c',
-            mods = 'CTRL',
-            action = wezterm.action.Multiple {
-                wezterm.action.CopyMode 'ClearPattern',
-                wezterm.action.CopyMode 'Close'
-            }
-        },
+        { key = 'n', mods = 'CTRL|SHIFT', action = wezterm.action.CopyMode 'NextMatch' },
+        { key = 'p', mods = 'CTRL|SHIFT', action = wezterm.action.CopyMode 'PriorMatch' },
+        { key = 'r', mods = 'CTRL|SHIFT', action = wezterm.action.CopyMode 'CycleMatchType' },
+        { key = 'l', mods = 'CTRL|SHIFT', action = wezterm.action.CopyMode 'ClearPattern' },
         {
             key = 'Escape',
             mods = 'NONE',
@@ -219,6 +125,37 @@ config.key_tables = {
         },
     },
     copy_mode = {
+        { key = 'Space', mods = 'NONE',  action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' }, },
+        { key = '$',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveToEndOfLineContent', },
+        { key = '$',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToEndOfLineContent', },
+        { key = ',',     mods = 'NONE',  action = wezterm.action.CopyMode 'JumpReverse' },
+        { key = '0',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveToStartOfLine' },
+        { key = ';',     mods = 'NONE',  action = wezterm.action.CopyMode 'JumpAgain' },
+        { key = 'F',     mods = 'SHIFT', action = wezterm.action.CopyMode { JumpBackward = { prev_char = false } }, },
+        { key = 'G',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToScrollbackBottom', },
+        { key = 'H',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToViewportTop', },
+        { key = 'L',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToViewportBottom', },
+        { key = 'M',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToViewportMiddle', },
+        { key = 'O',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToSelectionOtherEndHoriz', },
+        { key = 'T',     mods = 'SHIFT', action = wezterm.action.CopyMode { JumpBackward = { prev_char = true } }, },
+        { key = 'V',     mods = 'SHIFT', action = wezterm.action.CopyMode { SetSelectionMode = 'Line' }, },
+        { key = '^',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveToStartOfLineContent', },
+        { key = '^',     mods = 'SHIFT', action = wezterm.action.CopyMode 'MoveToStartOfLineContent', },
+        { key = 'b',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveBackwardWord' },
+        { key = 'd',     mods = 'CTRL',  action = wezterm.action.CopyMode { MoveByPage = 0.5 }, },
+        { key = 'e',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveForwardWordEnd', },
+        { key = 'f',     mods = 'NONE',  action = wezterm.action.CopyMode { JumpForward = { prev_char = false } }, },
+        { key = 'g',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveToScrollbackTop', },
+        { key = 'h',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveLeft' },
+        { key = 'j',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveDown' },
+        { key = 'k',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveUp' },
+        { key = 'l',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveRight' },
+        { key = 'o',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveToSelectionOtherEnd', },
+        { key = 't',     mods = 'NONE',  action = wezterm.action.CopyMode { JumpForward = { prev_char = true } }, },
+        { key = 'u',     mods = 'CTRL',  action = wezterm.action.CopyMode { MoveByPage = -0.5 }, },
+        { key = 'v',     mods = 'NONE',  action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' }, },
+        { key = 'v',     mods = 'CTRL',  action = wezterm.action.CopyMode { SetSelectionMode = 'Block' }, },
+        { key = 'w',     mods = 'NONE',  action = wezterm.action.CopyMode 'MoveForwardWord' },
         {
             key = 'y',
             mods = 'NONE',
@@ -227,169 +164,6 @@ config.key_tables = {
                 wezterm.action.CopyMode 'ClearPattern',
                 wezterm.action.CopyMode 'Close'
             },
-        },
-        {
-            key = 'Space',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' },
-        },
-        {
-            key = '$',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveToEndOfLineContent',
-        },
-        {
-            key = '$',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToEndOfLineContent',
-        },
-        {
-            key = ',',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'JumpReverse'
-        },
-        {
-            key = '0',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveToStartOfLine'
-        },
-        {
-            key = ';',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'JumpAgain'
-        },
-        {
-            key = 'F',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode { JumpBackward = { prev_char = false } },
-        },
-        {
-            key = 'G',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToScrollbackBottom',
-        },
-        {
-            key = 'H',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToViewportTop',
-        },
-        {
-            key = 'L',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToViewportBottom',
-        },
-        {
-            key = 'M',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToViewportMiddle',
-        },
-        {
-            key = 'O',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToSelectionOtherEndHoriz',
-        },
-        {
-            key = 'T',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode { JumpBackward = { prev_char = true } },
-        },
-        {
-            key = 'V',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode { SetSelectionMode = 'Line' },
-        },
-        {
-            key = '^',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveToStartOfLineContent',
-        },
-        {
-            key = '^',
-            mods = 'SHIFT',
-            action = wezterm.action.CopyMode 'MoveToStartOfLineContent',
-        },
-        {
-            key = 'b',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveBackwardWord'
-        },
-        {
-            key = 'd',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode { MoveByPage = 0.5 },
-        },
-        {
-            key = 'e',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveForwardWordEnd',
-        },
-        {
-            key = 'f',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode { JumpForward = { prev_char = false } },
-        },
-        {
-            key = 'g',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveToScrollbackTop',
-        },
-        {
-            key = 'h',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveLeft'
-        },
-        {
-            key = 'j',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveDown'
-        },
-        {
-            key = 'k',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveUp'
-        },
-        {
-            key = 'l',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveRight'
-        },
-        {
-            key = 'o',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveToSelectionOtherEnd',
-        },
-        {
-            key = 't',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode { JumpForward = { prev_char = true } },
-        },
-        {
-            key = 'u',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode { MoveByPage = -0.5 },
-        },
-        {
-            key = 'v',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' },
-        },
-        {
-            key = 'v',
-            mods = 'CTRL',
-            action = wezterm.action.CopyMode { SetSelectionMode = 'Block' },
-        },
-        {
-            key = 'w',
-            mods = 'NONE',
-            action = wezterm.action.CopyMode 'MoveForwardWord'
-        },
-        {
-            key = 'c',
-            mods = 'CTRL',
-            action = wezterm.action.Multiple {
-                wezterm.action.CopyMode 'ClearPattern',
-                wezterm.action.CopyMode 'Close'
-            }
         },
         {
             key = 'Escape',
