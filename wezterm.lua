@@ -47,7 +47,7 @@ config.color_scheme = 'Catppuccin Mocha'
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
-if wezterm.target_triple == 'aarch64-apple-darwin' or 'x86_64-apple-darwin' then
+if wezterm.target_triple == 'aarch64-apple-darwin' or wezterm.target_triple == 'x86_64-apple-darwin' then
     config.font_size = 14
 else
     config.font_size = 10
