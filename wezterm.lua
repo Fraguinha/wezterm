@@ -2,6 +2,10 @@
 local wezterm = require 'wezterm'
 
 -- Functions
+local function is_macos()
+    return wezterm.target_triple == 'aarch64-apple-darwin' or wezterm.target_triple == 'x86_64-apple-darwin'
+end
+
 local function is_vi_process(pane)
     return pane:get_foreground_process_name():find('n?vim') ~= nil
 end
@@ -47,7 +51,7 @@ config.color_scheme = 'Catppuccin Mocha'
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
-if wezterm.target_triple == 'aarch64-apple-darwin' or wezterm.target_triple == 'x86_64-apple-darwin' then
+if is_macos() then
     config.font_size = 14
 else
     config.font_size = 10
@@ -71,30 +75,36 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- Feedzai
 table.insert(config.hyperlink_rules, {
-    regex = '\\b([A-Z]+-[0-9]+)\\b',
+    regex = '([A-Z]{3,}-[0-9]+)', -- JIRA issue
     format = 'https://fdz.atlassian.net/browse/$1',
 })
 
+-- Quick Copy
+config.disable_default_quick_select_patterns = true
+config.quick_select_patterns = {
+    '[a-f0-9]{6,}',                                      -- git commit hash
+    '[0-9]+\\.[0-9]+\\.[0-9]+',                          -- semantic version
+    '[a-zA-Z0-9-_\\.]*(?<!:/)(?:/[a-zA-Z0-9-_\\.]+)+/?', -- path
+}
+
 -- Keybindings
 config.disable_default_key_bindings = true
-config.leader = { key = 'Space', mods = 'CTRL|SHIFT' }
 config.keys = {
-    { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo "Clipboard", },
-    { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom "Clipboard", },
-    { key = '%', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
-    { key = '"', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
-    { key = 'h', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-left'), },
-    { key = 'j', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-down'), },
-    { key = 'k', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-up'), },
-    { key = 'l', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-right'), },
-    { key = 'u', mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(-0.5) },
-    { key = 'd', mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(0.5) },
-    { key = ')', mods = 'CTRL|SHIFT', action = wezterm.action.ResetFontSize },
-    { key = '_', mods = 'CTRL|SHIFT', action = wezterm.action.DecreaseFontSize },
-    { key = '+', mods = 'CTRL|SHIFT', action = wezterm.action.IncreaseFontSize },
-    { key = 'f', mods = 'CTRL|SHIFT', action = wezterm.action.Search { CaseInSensitiveString = "" }, },
-    { key = 'g', mods = 'CTRL|SHIFT', action = wezterm.action.Search { Regex = '[a-f0-9]{6,}', }, },
-    { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.Search { Regex = '[0-9]+\\.[0-9]+\\.[0-9]+', }, },
+    { key = 'Space', mods = 'CTRL|SHIFT', action = wezterm.action.QuickSelect },
+    { key = 'c',     mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo "Clipboard", },
+    { key = 'v',     mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom "Clipboard", },
+    { key = '%',     mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+    { key = '"',     mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
+    { key = 'h',     mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-left'), },
+    { key = 'j',     mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-down'), },
+    { key = 'k',     mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-up'), },
+    { key = 'l',     mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-right'), },
+    { key = 'u',     mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(-0.5) },
+    { key = 'd',     mods = 'CTRL|SHIFT', action = wezterm.action.ScrollByPage(0.5) },
+    { key = ')',     mods = 'CTRL|SHIFT', action = wezterm.action.ResetFontSize },
+    { key = '_',     mods = 'CTRL|SHIFT', action = wezterm.action.DecreaseFontSize },
+    { key = '+',     mods = 'CTRL|SHIFT', action = wezterm.action.IncreaseFontSize },
+    { key = 'f',     mods = 'CTRL|SHIFT', action = wezterm.action.Search { CaseInSensitiveString = "" }, },
     {
         key = 'x',
         mods = 'CTRL|SHIFT',
