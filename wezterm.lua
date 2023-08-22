@@ -75,7 +75,7 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- Feedzai
 table.insert(config.hyperlink_rules, {
-    regex = '([A-Z]{3,}-[0-9]+)', -- JIRA issue
+    regex = '([A-Z]{2,}-[0-9]+)', -- JIRA issue
     format = 'https://fdz.atlassian.net/browse/$1',
 })
 
