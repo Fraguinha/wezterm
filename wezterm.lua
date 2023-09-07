@@ -6,6 +6,21 @@ local function is_macos()
     return wezterm.target_triple == 'aarch64-apple-darwin' or wezterm.target_triple == 'x86_64-apple-darwin'
 end
 
+local function get_appearance()
+    if wezterm.gui then
+        return wezterm.gui.get_appearance()
+    end
+    return 'Dark'
+end
+
+local function scheme_for_appearance(appearance)
+    if appearance:find 'Dark' then
+        return 'Catppuccin Mocha'
+    else
+        return 'Catppuccin Latte'
+    end
+end
+
 local function is_vi_process(pane)
     return pane:get_foreground_process_name():find('n?vim') ~= nil
 end
@@ -47,14 +62,14 @@ end
 -- This is where you actually apply your config choices
 
 -- Theme
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = scheme_for_appearance(get_appearance())
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
 if is_macos() then
     config.font_size = 14
 else
-    config.font_size = 10
+    config.font_size = 12
 end
 
 -- Window
