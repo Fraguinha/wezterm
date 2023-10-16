@@ -104,6 +104,8 @@ config.keys = {
     { key = 'Space', mods = 'CTRL|SHIFT', action = wezterm.action.QuickSelect },
     { key = 'c',     mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo "Clipboard", },
     { key = 'v',     mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom "Clipboard", },
+    { key = 'c',     mods = 'CMD',        action = wezterm.action.CopyTo "Clipboard", },
+    { key = 'v',     mods = 'CMD',        action = wezterm.action.PasteFrom "Clipboard", },
     { key = '%',     mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
     { key = '"',     mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
     { key = 'h',     mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent('ActivatePaneDirection-left'), },
