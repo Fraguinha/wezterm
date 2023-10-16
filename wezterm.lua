@@ -66,11 +66,7 @@ config.color_scheme = scheme_for_appearance(get_appearance())
 
 -- Font
 config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
-if is_macos() then
-    config.font_size = 14
-else
-    config.font_size = 12
-end
+config.font_size = 12
 
 -- Window
 config.native_macos_fullscreen_mode = true
