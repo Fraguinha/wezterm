@@ -27,7 +27,7 @@ end
 
 local function conditional_activate_pane(window, pane, pane_direction, vim_direction)
 	if is_vi_process(pane) then
-		window:perform_action(wezterm.action.SendKey({ key = vim_direction, mods = "ALT" }), pane)
+		window:perform_action(wezterm.action.SendKey({ key = vim_direction, mods = "CTRL" }), pane)
 	else
 		window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
 	end
