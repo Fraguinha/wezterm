@@ -68,6 +68,7 @@ if is_macos() then
 else
 	config.font_size = 10
 end
+config.warn_about_missing_glyphs = false
 
 -- Window
 config.native_macos_fullscreen_mode = true
