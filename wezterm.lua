@@ -54,8 +54,8 @@ table.insert(config.hyperlink_rules, {
 -- Quick Copy
 config.disable_default_quick_select_patterns = true
 config.quick_select_patterns = {
-	[[[^ /"']*(?<!:/)(?:/[^ /"']+)+/?]], -- linux paths
-	[[[0-9]+\\.[0-9]+\\.[0-9]+]], -- semantic version
+	[[[a-zA-Z0-9._-]*(?<!:/)(?:/[a-zA-Z0-9._-]+)+/?]], -- linux paths
+	[[[0-9]+\.[0-9]+\.[0-9]+]], -- semantic version
 	[[[0-9a-f]{6,40}]], -- sha1 hash
 	[["[^"]*"]], -- double quote string
 	[['[^']*']], -- single quote string
