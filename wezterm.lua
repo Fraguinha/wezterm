@@ -55,10 +55,10 @@ table.insert(config.hyperlink_rules, {
 -- Quick Copy
 config.disable_default_quick_select_patterns = true
 config.quick_select_patterns = {
-	regex.ipv6,
-	regex.ipv4,
 	regex.linux_path,
+	regex.ipv4,
 	regex.semantic_version,
+	regex.aws_instance,
 	regex.sha1_hash,
 	regex.single_quote_string,
 	regex.double_quote_string,
