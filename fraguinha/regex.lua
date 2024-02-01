@@ -9,6 +9,8 @@ module.linux_path = [[[a-zA-Z0-9._-]*(?<!:/)(?:/[a-zA-Z0-9._-]+)+/?]]
 
 module.semantic_version = [[[0-9]+\.[0-9]+\.[0-9]+]]
 
+module.jira_ticket = [[([A-Z]{2,}-[0-9]+)]]
+
 module.sha1_hash = [[[0-9a-f]{6,40}]]
 
 module.single_quote_string = [['[^']*']]
