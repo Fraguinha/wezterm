@@ -4,6 +4,7 @@ local wezterm = require("wezterm")
 local functions = require("fraguinha.functions")
 local handlers = require("fraguinha.handlers")
 local keybinds = require("fraguinha.keybinds")
+local regex = require("fraguinha.regex")
 
 local config = {}
 if wezterm.config_builder then
@@ -54,11 +55,13 @@ table.insert(config.hyperlink_rules, {
 -- Quick Copy
 config.disable_default_quick_select_patterns = true
 config.quick_select_patterns = {
-	[[[a-zA-Z0-9._-]*(?<!:/)(?:/[a-zA-Z0-9._-]+)+/?]], -- linux paths
-	[[[0-9]+\.[0-9]+\.[0-9]+]], -- semantic version
-	[[[0-9a-f]{6,40}]], -- sha1 hash
-	[["[^"]*"]], -- double quote string
-	[['[^']*']], -- single quote string
+	regex.ipv6,
+	regex.ipv4,
+	regex.linux_path,
+	regex.semantic_version,
+	regex.sha1_hash,
+	regex.single_quote_string,
+	regex.double_quote_string,
 }
 
 return config
