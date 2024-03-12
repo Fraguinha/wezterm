@@ -27,7 +27,12 @@ function module.setup(config)
 		{
 			key = "Return",
 			mods = "CTRL|SHIFT",
-			action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+			action = wezterm.action.SpawnTab("DefaultDomain"),
+		},
+		{
+			key = "Backspace",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.CloseCurrentTab({ confirm = false }),
 		},
 		{
 			key = "Space",
