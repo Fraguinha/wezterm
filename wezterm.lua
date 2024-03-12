@@ -31,8 +31,9 @@ else
 end
 
 -- Window
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 config.native_macos_fullscreen_mode = true
-config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
 	left = 0,
 	right = 0,
