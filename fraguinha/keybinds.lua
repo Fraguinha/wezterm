@@ -35,6 +35,16 @@ function module.setup(config)
 			action = wezterm.action.CloseCurrentTab({ confirm = false }),
 		},
 		{
+			key = "p",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.ActivateTabRelative(-1),
+		},
+		{
+			key = "n",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.ActivateTabRelative(1),
+		},
+		{
 			key = "Space",
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.ActivateCopyMode,
