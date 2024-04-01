@@ -33,6 +33,7 @@ end
 -- Window
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+config.enable_wayland = false
 config.native_macos_fullscreen_mode = true
 config.window_padding = {
 	left = 0,
