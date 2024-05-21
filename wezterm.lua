@@ -22,8 +22,9 @@ keybinds.setup(config)
 config.color_scheme = functions.choose_theme()
 
 -- Font
-config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
 config.warn_about_missing_glyphs = false
+config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+config.line_height = 1.2
 if functions.is_macos() then
 	config.font_size = 12
 else
@@ -33,7 +34,6 @@ end
 -- Window
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.enable_wayland = false
 config.native_macos_fullscreen_mode = true
 config.window_padding = {
 	left = 0,
@@ -41,6 +41,9 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+if functions.is_linux() then
+	config.enable_wayland = true
+end
 
 -- Scrollback
 config.scrollback_lines = 100000
