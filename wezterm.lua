@@ -23,12 +23,12 @@ config.color_scheme = functions.choose_theme()
 
 -- Font
 config.warn_about_missing_glyphs = false
-config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 config.line_height = 1.2
 if functions.is_macos() then
 	config.font_size = 12
 else
-	config.font_size = 10
+	config.font_size = 9
 end
 
 -- Window
