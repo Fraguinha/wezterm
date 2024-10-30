@@ -14,6 +14,8 @@ function module.setup(config)
 		{ key = "j", mods = "CTRL|SHIFT", action = wezterm.action.EmitEvent("ActivatePaneDirection-down") },
 		{ key = "k", mods = "CTRL|SHIFT", action = wezterm.action.EmitEvent("ActivatePaneDirection-up") },
 		{ key = "l", mods = "CTRL|SHIFT", action = wezterm.action.EmitEvent("ActivatePaneDirection-right") },
+		{ key = "+", mods = "CTRL|SHIFT", action = wezterm.action.IncreaseFontSize },
+		{ key = "_", mods = "CTRL|SHIFT", action = wezterm.action.DecreaseFontSize },
 		{
 			key = "f",
 			mods = "CTRL|SHIFT",
@@ -27,7 +29,7 @@ function module.setup(config)
 		{
 			key = "Return",
 			mods = "CTRL|SHIFT",
-			action = wezterm.action.SpawnTab("DefaultDomain"),
+			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 		},
 		{
 			key = "Backspace",
@@ -35,21 +37,18 @@ function module.setup(config)
 			action = wezterm.action.CloseCurrentTab({ confirm = false }),
 		},
 		{
-			key = "p",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action.ActivateTabRelative(-1),
-		},
-		{
-			key = "n",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action.ActivateTabRelative(1),
-		},
-		{
 			key = "Space",
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.ActivateCopyMode,
 		},
 	}
+
+	for i = 1, 12 do
+		table.insert(config.keys, {
+			key = "F" .. tostring(i),
+			action = wezterm.action.ActivateTab(i - 1),
+		})
+	end
 
 	config.key_tables = {
 		search_mode = {
