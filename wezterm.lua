@@ -45,6 +45,20 @@ if functions.is_linux() then
 	config.enable_wayland = true
 end
 
+-- Persistance
+config.default_domain = "unix"
+config.default_mux_server_domain = "unix"
+config.default_gui_startup_args = { "connect", "unix" }
+config.unix_domains = {
+	{
+		name = "unix",
+	},
+}
+
+-- Tuning
+config.max_fps = 240
+config.animation_fps = 1
+
 -- Scrollback
 config.scrollback_lines = 100000
 
@@ -60,13 +74,17 @@ table.insert(config.hyperlink_rules, {
 -- Quick Copy
 config.disable_default_quick_select_patterns = true
 config.quick_select_patterns = {
-	regex.linux_path,
+	regex.path,
+	regex.url,
 	regex.ipv4,
-	regex.semantic_version,
+	regex.ipv6,
+	regex.uuid,
+	regex.sha1,
+	regex.docker,
 	regex.aws_instance,
-	regex.sha1_hash,
-	regex.single_quote_string,
-	regex.double_quote_string,
+	regex.semantic_version,
+	regex.conventional_commit,
+	regex.jira_ticket,
 }
 
 return config

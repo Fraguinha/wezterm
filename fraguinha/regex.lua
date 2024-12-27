@@ -1,19 +1,36 @@
-local module = {}
+local M = {}
 
-module.linux_path = [[[a-zA-Z0-9._-]*(?<!:/)(?:/[a-zA-Z0-9._-]+)+/?]]
+-- Path
+M.path = [[(?:[.\w\-@~]+)?(?:/+[.\w\-@]+)+]]
 
-module.ipv4 = [[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]
+-- URL
+M.url = [[(?:https?://|git@|git://|ssh://|ftp://|file://)\S+]]
 
-module.semantic_version = [[\d+\.\d+\.\d+]]
+-- IP
+M.ipv4 = [[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]
+M.ipv6 = [[[A-f0-9:]+:+[A-f0-9:]+[%\w\d]+]]
 
-module.jira_ticket = [[([A-Z]{2,}-\d+)]]
+-- UUID
+M.uuid = [[[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}]]
 
-module.aws_instance = [[i-[0-9a-f]{17}]]
+-- Hashes
+M.sha1 = [[[0-9a-f]{7,40}]]
 
-module.sha1_hash = [[[0-9a-f]{6,40}]]
+-- Versioning
+M.semantic_version =
+	[[(?:[0-9]+)\.(?:[0-9]+)\.(?:[0-9]+)(?:-(?:[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?]]
 
-module.single_quote_string = [['[^']*']]
+-- Conventional commits
+M.conventional_commit =
+	[[(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(?:\([\w\-\.]+\))?(?:!)?: (?:[\w ])+(?<!\s)]]
 
-module.double_quote_string = [["[^"]*"]]
+-- Docker
+M.docker = [[sha256:([0-9a-f]{64})]]
 
-return module
+-- Jira
+M.jira_ticket = [[([A-Z]{2,}-\d+)]]
+
+-- AWS
+M.aws_instance = [[i-[0-9a-f]{17}]]
+
+return M
